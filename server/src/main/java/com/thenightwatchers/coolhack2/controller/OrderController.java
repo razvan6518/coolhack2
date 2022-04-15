@@ -1,41 +1,37 @@
 package com.thenightwatchers.coolhack2.controller;
 
-import com.thenightwatchers.coolhack2.model.Product;
-import com.thenightwatchers.coolhack2.model.Ranch;
-import com.thenightwatchers.coolhack2.service.ProductServiceImpl;
-import com.thenightwatchers.coolhack2.service.RanchServiceImpl;
+import com.thenightwatchers.coolhack2.model.CustomerOrder;
+import com.thenightwatchers.coolhack2.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
-@RequestMapping("/api/ranch")
+@RequestMapping("/api/order")
 @CrossOrigin(origins = "http://localhost:3000")
-public class RanchController {
+public class OrderController {
 
-    RanchServiceImpl ranchService;
+    OrderServiceImpl orderService;
 
     @Autowired
-    public RanchController(RanchServiceImpl ranchService) {
-        this.ranchService = ranchService;
+    public OrderController(OrderServiceImpl orderService) {
+        this.orderService = orderService;
     }
 
     @PostMapping
-    public void addRanch(@RequestBody Ranch ranch) {
-        ranchService.saveRanch(ranch);
+    public void addOrder(@RequestBody CustomerOrder order) {
+        orderService.saveOrder(order);
     }
 
-    @PostMapping("/{id}/{productId}")
-    public ResponseEntity<?> addProductToRanch(@PathVariable Long productId, @PathVariable Long id) {
-        ranchService.addProduct(id, productId);
-        return ResponseEntity.ok().build();
+
+    @GetMapping("/user/{userId}")
+    public List<CustomerOrder> getByUserId(@PathVariable Long userId) {
+        return orderService.getOrdersByUserId(userId);
     }
 
-    @GetMapping("/all")
-    public List<Ranch> getAll(){
-        return ranchService.getAll();
+    @GetMapping("/ranch/{ranchId}")
+    public List<CustomerOrder> getByRanchId(@PathVariable Long ranchId) {
+        return orderService.getOrdersByRanchId(ranchId);
     }
 }

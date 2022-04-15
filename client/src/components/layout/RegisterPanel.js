@@ -50,7 +50,11 @@ function RegisterPanel() {
             myHeaders.append("Content-Type", "application/json");
 
             let raw = JSON.stringify({
-               user
+                "email": user.email,
+                "firstName": user.firstName,
+                "lastName": user.lastName,
+                "password": user.password,
+                "roles": [user.role]
             });
 
             let requestOptions = {

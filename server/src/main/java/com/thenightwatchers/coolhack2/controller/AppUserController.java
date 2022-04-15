@@ -42,4 +42,12 @@ public class AppUserController {
     public List<AppUser> getAllUsers() {
         return appUserService.getAll();
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<AppUser> getUserByEmail(@PathVariable String email) {
+        if (appUserService.getAllByEmail(email).size() > 0)
+            return ResponseEntity.status(200).build();
+        else
+            return ResponseEntity.status(500).build();
+    }
 }

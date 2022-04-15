@@ -21,7 +21,6 @@ public class AppUser {
     private Long id;
 
     private String firstName;
-    private String username;
     private String lastName;
     private String email;
     private String password;
@@ -31,4 +30,5 @@ public class AppUser {
 
     @OneToMany
     private Collection<Ranch> ranches = new ArrayList<>();
+
 }

@@ -1,22 +1,33 @@
 package com.thenightwatchers.coolhack2.service;
 
-import com.thenightwatchers.coolhack2.model.Product;
-import com.thenightwatchers.coolhack2.repository.ProductRepo;
-import com.thenightwatchers.coolhack2.service.Imp.ProductService;
+import com.thenightwatchers.coolhack2.model.CustomerOrder;
+import com.thenightwatchers.coolhack2.repository.OrderRepo;
+import com.thenightwatchers.coolhack2.service.Imp.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ProductServiceImpl implements ProductService {
+public class OrderServiceImpl implements OrderService {
 
-    private final ProductRepo productRepo;
+    private final OrderRepo orderRepo;
 
     @Override
-    public Product saveProduct(Product product) {
-        return productRepo.save(product);
+    public CustomerOrder saveOrder(CustomerOrder order) {
+        return orderRepo.save(order);
+    }
+
+    @Override
+    public List<CustomerOrder> getOrdersByUserId(Long userId) {
+        return orderRepo.getAllByUserId(userId);
+    }
+
+    @Override
+    public List<CustomerOrder> getOrdersByRanchId(Long ranchId) {
+        return orderRepo.getAllByUserId(ranchId);
     }
 }

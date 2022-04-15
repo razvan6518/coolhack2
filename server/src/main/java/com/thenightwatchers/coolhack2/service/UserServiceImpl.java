@@ -32,14 +32,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final PasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = userRepo.findByUsername(username);
-        Collection<SimpleGrantedAuthority> roles = new ArrayList<>();
-        user.getRoles().forEach(role -> roles.add(new SimpleGrantedAuthority(role)));
-        return new User(user.getUsername(), user.getPassword(), roles);
-    }
-
-    @Override
     public AppUser saveUser(AppUser appUser) {
         appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
         return userRepo.save(appUser);
@@ -62,11 +54,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public AppUser getUser(String username) {
-        return userRepo.findByUsername(username);
-    }
-
-    @Override
     public List<AppUser> getUsers() {
         return userRepo.findAll();
     }
@@ -85,5 +72,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     public List<AppUser> getAll(){
         return userRepo.findAll();
+    }
+
+    @Override
+    public List<AppUser> getAllByEmail(String email) {
+        return userRepo.getAllByEmail(email);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }

@@ -1,10 +1,11 @@
 package com.thenightwatchers.coolhack2.repository;
 
-import com.thenightwatchers.coolhack2.model.Ranch;
+import com.thenightwatchers.coolhack2.model.CustomerOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Set;
+import java.util.List;
 
-public interface RanchRepo extends JpaRepository<Ranch, Long> {
-    Ranch getRanchById(Long id);
+public interface OrderRepo extends JpaRepository<CustomerOrder, Long> {
+    List<CustomerOrder> getAllByRanchId(Long id);
+    List<CustomerOrder> getAllByUserId(Long id);
 }

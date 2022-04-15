@@ -14,10 +14,9 @@ public interface UserService {
 
     AppUser getUser(long id);
 
-    AppUser getUser(String username);
-
     List<AppUser> getUsers();
 
-
     Set<Ranch> getAllRanchesForUser(Long id);
+
+    List<AppUser> getAllByEmail(String email);
 }
