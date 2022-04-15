@@ -24,7 +24,8 @@ function ToFavoriteButton(props) {
     }
 
     return (
-        <button onClick={toFavoriteHandler}>To Favorite</button>
+        // <button onClick={toFavoriteHandler}>To Favorite</button>
+        <a className="btn-floating btn-large waves-effect waves-light red" onClick={toFavoriteHandler}><i className="material-icons">favorite</i></a>
     );
 }
 

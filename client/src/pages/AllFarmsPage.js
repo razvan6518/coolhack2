@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
 import FarmList from "../components/farms/FarmList";
 
-let FARMS = [{id: 1, name: "La Vaci", description: "Cea mai buna ferma", address: "Test Locality, Test Street, nr. 2", coordinates: "00.00.00.00", products: [{id: 1, name: "mere"}, {id: 2, name: "banane"}], coverPhoto: "url", rating: 5, reviews: [{id: "1", "text": "this is a review"}, {id: 2, test: "Another review"}], orders: [{id: 1, productId: 1, quantity: 10}, {id: 2, productId: 2, quantity: 7}]},
-    {id: 2, name: "La Vaci", description: "Cea mai buna ferma", address: "Test Locality, Test Street, nr. 2", coordinates: "00.00.00.00", products: [{id: 1, name: "mere"}, {id: 2, name: "banane"}], coverPhoto: "url", rating: 5, reviews: [{id: "1", "text": "this is a review"}, {id: 2, test: "Another review"}], orders: [{id: 1, productId: 1, quantity: 10}, {id: 2, productId: 2, quantity: 7}]},
-    {id: 3, name: "La Vaci", description: "Cea mai buna ferma", address: "Test Locality, Test Street, nr. 2", coordinates: "00.00.00.00", products: [{id: 1, name: "mere"}, {id: 2, name: "banane"}], coverPhoto: "url", rating: 5, reviews: [{id: "1", "text": "this is a review"}, {id: 2, test: "Another review"}], orders: [{id: 1, productId: 1, quantity: 10}, {id: 2, productId: 2, quantity: 7}]}];
+let imageURL = "https://foodtank.com/wp-content/uploads/2020/04/COVID-19-Relief_Small-Farms-.jpg"
+
+let FARMS = [{id: 1, name: "La Vaci", description: "Cea mai buna ferma", address: "Test Locality, Test Street, nr. 2", coordinates: "00.00.00.00", products: [{id: 1, name: "mere"}, {id: 2, name: "banane"}], coverPhoto: imageURL, rating: 5, reviews: [{id: "1", "text": "this is a review"}, {id: 2, test: "Another review"}], orders: [{id: 1, productId: 1, quantity: 10}, {id: 2, productId: 2, quantity: 7}]},
+    {id: 2, name: "La Vaci", description: "Cea mai buna ferma", address: "Test Locality, Test Street, nr. 2", coordinates: "00.00.00.00", products: [{id: 1, name: "mere"}, {id: 2, name: "banane"}], coverPhoto: imageURL, rating: 5, reviews: [{id: "1", "text": "this is a review"}, {id: 2, test: "Another review"}], orders: [{id: 1, productId: 1, quantity: 10}, {id: 2, productId: 2, quantity: 7}]},
+    {id: 3, name: "La Vaci", description: "Cea mai buna ferma", address: "Test Locality, Test Street, nr. 2", coordinates: "00.00.00.00", products: [{id: 1, name: "mere"}, {id: 2, name: "banane"}], coverPhoto: imageURL, rating: 5, reviews: [{id: "1", "text": "this is a review"}, {id: 2, test: "Another review"}], orders: [{id: 1, productId: 1, quantity: 10}, {id: 2, productId: 2, quantity: 7}]}];
 
 function AllFarmsPage() {
 
