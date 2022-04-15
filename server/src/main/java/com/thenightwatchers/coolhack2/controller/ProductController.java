@@ -1,25 +1,25 @@
 package com.thenightwatchers.coolhack2.controller;
 
-import com.thenightwatchers.coolhack2.model.AppUser;
-import com.thenightwatchers.coolhack2.service.UserServiceImpl;
+import com.thenightwatchers.coolhack2.model.Product;
+import com.thenightwatchers.coolhack2.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/product")
 @CrossOrigin(origins = "http://localhost:3000")
-public class AppUserController {
+public class ProductController {
 
-    UserServiceImpl appUserService;
+    ProductServiceImpl productService;
 
     @Autowired
-    public AppUserController(UserServiceImpl appUserService) {
-        this.appUserService = appUserService;
+    public ProductController(ProductServiceImpl productService) {
+        this.productService = productService;
     }
 
     @PostMapping
-    public void addUser(@RequestBody AppUser appUser) {
-        appUserService.saveUser(appUser);
+    public void addProduct(@RequestBody Product product) {
+        productService.saveProduct(product);
     }
 
 }

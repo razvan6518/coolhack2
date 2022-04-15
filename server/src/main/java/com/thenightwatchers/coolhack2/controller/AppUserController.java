@@ -1,19 +1,24 @@
 package com.thenightwatchers.coolhack2.controller;
 
 import com.thenightwatchers.coolhack2.model.AppUser;
-import com.thenightwatchers.coolhack2.service.AppUserService;
+import com.thenightwatchers.coolhack2.model.Ranch;
+import com.thenightwatchers.coolhack2.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AppUserController {
 
-    AppUserService appUserService;
+    UserServiceImpl appUserService;
 
     @Autowired
-    public AppUserController(AppUserService appUserService) {
+    public AppUserController(UserServiceImpl appUserService) {
         this.appUserService = appUserService;
     }
 
@@ -22,4 +27,19 @@ public class AppUserController {
         appUserService.saveUser(appUser);
     }
 
+    @PostMapping("/{userId}/{ranchId}")
+    public ResponseEntity<?> addRanchToUser(@PathVariable Long userId, @PathVariable Long ranchId) {
+        appUserService.addRanch(userId, ranchId);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}/ranches")
+    public Set<Ranch> getAllRanchesForUser(@PathVariable Long id) {
+        return appUserService.getAllRanchesForUser(id);
+    }
+
+    @GetMapping("/all")
+    public List<AppUser> getAllUsers() {
+        return appUserService.getAll();
+    }
 }

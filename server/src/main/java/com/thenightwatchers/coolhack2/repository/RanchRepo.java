@@ -1,8 +1,10 @@
 package com.thenightwatchers.coolhack2.repository;
 
-import com.thenightwatchers.coolhack2.model.AppUser;
+import com.thenightwatchers.coolhack2.model.Ranch;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepo extends JpaRepository<AppUser, Long> {
-    AppUser findByUsername(String username);
+import java.util.Set;
+
+public interface RanchRepo extends JpaRepository<Ranch, Long> {
+    Ranch getRanchById(Long id);
 }

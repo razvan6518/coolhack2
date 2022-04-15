@@ -1,4 +1,4 @@
-package com.thenightwatchers.coolhack2.service;
+package com.thenightwatchers.coolhack2.service.Imp;
 
 import com.thenightwatchers.coolhack2.model.Product;
 

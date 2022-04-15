@@ -1,68 +1,39 @@
 package com.thenightwatchers.coolhack2.service;
 
-import com.thenightwatchers.coolhack2.model.AppUser;
-import com.thenightwatchers.coolhack2.repository.UserRepo;
+import com.thenightwatchers.coolhack2.model.Product;
+import com.thenightwatchers.coolhack2.model.Ranch;
+import com.thenightwatchers.coolhack2.repository.ProductRepo;
+import com.thenightwatchers.coolhack2.repository.RanchRepo;
+import com.thenightwatchers.coolhack2.service.Imp.RanchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class RanchServiceImpl implements RanchService {
 
-    private final UserRepo userRepo;
-    private final PasswordEncoder bCryptPasswordEncoder;
+    private final RanchRepo ranchRepo;
+    private final ProductRepo productRepo;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = userRepo.findByUsername(username);
-        Collection<SimpleGrantedAuthority> roles = new ArrayList<>();
-        user.getRoles().forEach(role -> roles.add(new SimpleGrantedAuthority(role)));
-        return new User(user.getUsername(), user.getPassword(), roles);
+    public Ranch saveRanch(Ranch ranch) {
+        return ranchRepo.save(ranch);
     }
 
-    @Override
-    public AppUser saveUser(AppUser appUser) {
-        appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
-        return userRepo.save(appUser);
+    public void addProduct(Long ranchId, Long productId) {
+        Ranch ranch = ranchRepo.getRanchById(ranchId);
+        Product product = productRepo.getProductById(productId);
+        ranch.getProducts().add(product);
+        ranchRepo.save(ranch);
     }
 
-    @Override
-    public AppUser updateUser(AppUser user, long id) {
-        AppUser appUser = userRepo.findById(id).get();
-        // TODO: fix bug when update user details without changing password
-        appUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        appUser.setFirstName(user.getFirstName());
-        appUser.setLastName(user.getLastName());
-        appUser.setEmail(user.getEmail());
-        return userRepo.save(appUser);
-    }
-
-    @Override
-    public AppUser getUser(long id) {
-        return userRepo.findById(id).get();
-    }
-
-    @Override
-    public AppUser getUser(String username) {
-        return userRepo.findByUsername(username);
-    }
-
-    @Override
-    public List<AppUser> getUsers() {
-        return userRepo.findAll();
+    public List<Ranch> getAll(){
+        return ranchRepo.findAll();
     }
 }
