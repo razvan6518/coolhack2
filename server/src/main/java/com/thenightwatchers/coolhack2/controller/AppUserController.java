@@ -1,7 +1,7 @@
-package com.razvan.yourownchef.controller;
+package com.thenightwatchers.coolhack2.controller;
 
-import com.razvan.yourownchef.model.AppUser;
-import com.razvan.yourownchef.service.AppUserService;
+import com.thenightwatchers.coolhack2.model.AppUser;
+import com.thenightwatchers.coolhack2.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class AppUserController {
 
     @PostMapping
     public void addChef(@RequestBody AppUser appUser) {
-        appUserService.addChef(appUser);
+        appUserService.addUser(appUser);
     }
 
 }

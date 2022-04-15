@@ -1,7 +1,7 @@
-package com.razvan.yourownchef.service;
+package com.thenightwatchers.coolhack2.service;
 
-import com.razvan.yourownchef.model.AppUser;
-import com.razvan.yourownchef.repository.AppUserRepository;
+import com.thenightwatchers.coolhack2.model.AppUser;
+import com.thenightwatchers.coolhack2.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,11 @@ public class AppUserService {
     AppUserRepository appUserRepository;
 
     @Autowired
-    public AppUserService(AppUserRepository chefRepository){
-        this.appUserRepository = chefRepository;
+    public AppUserService(AppUserRepository appUserRepository){
+        this.appUserRepository = appUserRepository;
     }
 
-    public void addChef (AppUser appUser){
+    public void addUser (AppUser appUser){
         appUserRepository.save(appUser);
     }
 
