@@ -6,10 +6,13 @@ import {useEffect, useState} from "react";
 import LoginPanel from "./LoginPanel";
 import UserPanel from "./UserPanel";
 import RegisterPanel from "./RegisterPanel";
+import {useAtom} from "jotai";
+import {TOKEN} from "../../store";
 
 function Navbar(props) {
     // let sidebarContent = <LoginSideBar></LoginSideBar>;
     const [sidenavInstance, setSidenavInstance] = useState();
+    const [token, setToken] = useAtom(TOKEN);
 
     function farmsPageClickHandler() {
         props.setCurrentPage(<AllFarmsPage/>)
@@ -42,7 +45,7 @@ function Navbar(props) {
                 <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons" >menu</i></a>
                 <div className="nav-wrapper">
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li><a>Logo</a></li>
+                        <li><a>Logo {token}</a></li>
                         <li><a onClick={farmsPageClickHandler}>Farms</a></li>
                         <li><a onClick={productsPageClickHandler}>Products</a></li>
                     </ul>

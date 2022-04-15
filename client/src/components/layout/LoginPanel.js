@@ -11,8 +11,8 @@ function LoginPanel() {
     const [password, setPassword] = useState("");
 
     function loginHandler(event) {
+        event.preventDefault();
         const myHeaders = new Headers();
-        myHeaders.append("", "");
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         const urlencoded = new URLSearchParams();
@@ -28,7 +28,12 @@ function LoginPanel() {
 
         fetch("http://localhost:5000/login", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                result = JSON.parse(result);
+                if (result.access_token !== undefined) {
+                    setToken(result.access_token);
+                }
+            })
             .catch(error => console.log('error', error));
     }
 
