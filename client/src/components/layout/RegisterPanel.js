@@ -39,6 +39,8 @@ function RegisterPanel() {
             const user = {
                 "email": email,
                 "role": accountType,
+                "firstName": firstName,
+                "lastName": lastName,
                 "password": password,
                 "repeatedPassword": repeatPassword
             };
@@ -48,10 +50,7 @@ function RegisterPanel() {
             myHeaders.append("Content-Type", "application/json");
 
             let raw = JSON.stringify({
-                "email": user.email,
-                "username": user.username,
-                "password": user.password,
-                "roles": [user.role]
+               user
             });
 
             let requestOptions = {

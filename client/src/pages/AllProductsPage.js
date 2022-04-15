@@ -1,6 +1,5 @@
 import ProductList from "../components/products/ProductList";
 import {useEffect} from "react";
-import SimpleMap from "../components/layout/Map";
 
 
 function AllProductsPage() {
@@ -9,9 +8,9 @@ function AllProductsPage() {
     //     window.initMap = initMap;
     // })
 
-    return (<>
-        </>
+    return (<div>
 
+        </div>
     )
 }
 //
