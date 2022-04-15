@@ -1,10 +1,13 @@
 import FarmItem from "./FarmItem";
+import classes from "./FarmList.module.css";
 
 function FarmList(props) {
     return (
-        <ul >
-            {props.events.map(farm => <FarmItem key={farm.id} farm={farm} toFavorites={true}/>)}
-        </ul>
+        <div className={classes.list}>
+            <ul >
+                {props.events.map(farm => <FarmItem key={farm.id} farm={farm} toFavorites={true}/>)}
+            </ul>
+        </div>
     );
 }
 
