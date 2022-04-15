@@ -8,12 +8,12 @@ import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import {useEffect, useState} from "react";
 import './index.css';
-import UserSideBar from "./components/layout/UserSideBar";
-import LoginSideBar from "./components/layout/LoginSideBar";
+import UserPanel from "./components/layout/UserPanel";
+import LoginPanel from "./components/layout/LoginPanel";
 
 function App() {
     const [currentPage, setCurrentPage] = useState(<AllFarmsPage/>);
-    const [sidebarContent, setSidebarContent] = useState(<LoginSideBar/>);
+    const [sidebarContent, setSidebarContent] = useState(<LoginPanel/>);
 
     console.log("current page is: ", currentPage);
 
