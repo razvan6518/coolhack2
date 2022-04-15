@@ -18,8 +18,8 @@ public class AppUserController {
     }
 
     @PostMapping
-    public void addChef(@RequestBody AppUser appUser) {
-        appUserService.addUser(appUser);
+    public void addUser(@RequestBody AppUser appUser) {
+        appUserService.saveUser(appUser);
     }
 
 }
