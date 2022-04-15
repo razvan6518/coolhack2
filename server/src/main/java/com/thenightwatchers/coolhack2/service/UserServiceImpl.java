@@ -1,7 +1,10 @@
 package com.thenightwatchers.coolhack2.service;
 
 import com.thenightwatchers.coolhack2.model.AppUser;
+import com.thenightwatchers.coolhack2.model.Ranch;
+import com.thenightwatchers.coolhack2.repository.RanchRepo;
 import com.thenightwatchers.coolhack2.repository.UserRepo;
+import com.thenightwatchers.coolhack2.service.Imp.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,14 +19,16 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class AppUserService implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepo userRepo;
+    private final RanchRepo ranchRepo;
     private final PasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -63,6 +68,22 @@ public class AppUserService implements UserService, UserDetailsService {
 
     @Override
     public List<AppUser> getUsers() {
+        return userRepo.findAll();
+    }
+
+    public void addRanch(Long userId, Long ranchId) {
+        Ranch ranch = ranchRepo.getRanchById(ranchId);
+        AppUser user = userRepo.getById(userId);
+        user.getRanches().add(ranch);
+        ranchRepo.save(ranch);
+    }
+
+    @Override
+    public Set<Ranch> getAllRanchesForUser(Long id) {
+        return Set.copyOf(userRepo.getById(id).getRanches());
+    }
+
+    public List<AppUser> getAll(){
         return userRepo.findAll();
     }
 }
