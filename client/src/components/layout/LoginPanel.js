@@ -1,6 +1,6 @@
 import classes from "./Login.module.css"
 
-function LoginSideBar() {
+function LoginPanel() {
     return (
         <div className={classes.content}>
             <span>Login</span>
@@ -13,9 +13,10 @@ function LoginSideBar() {
                     <input id="password" type="password" className="validate"/>
                     <label className="active" htmlFor="password">password</label>
                 </div>
+                <a className="waves-effect waves-light btn-small">Login</a>
             </div>
         </div>
     )
 }
 
-export default LoginSideBar;
+export default LoginPanel;

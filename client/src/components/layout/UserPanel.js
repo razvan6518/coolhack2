@@ -1,4 +1,4 @@
-function UserSideBar() {
+function UserPanel() {
     return (
         <div>
             <ul >
@@ -26,4 +26,4 @@ function UserSideBar() {
     )
 }
 
-export default UserSideBar;
+export default UserPanel;
