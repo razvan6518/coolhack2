@@ -8,26 +8,20 @@ import LoginPanel from "./LoginPanel";
 import UserPanel from "./UserPanel";
 import RegisterPanel from "./RegisterPanel";
 import {useAtom} from "jotai";
-import {NAME, TOKEN, USER, USER_ROLE} from "../../store";
+import {NAME, SIDEBAR_CONTENT, TOKEN, USER, USER_ROLE} from "../../store";
 import {useNavigate} from "react-router-dom";
 
 function Navbar(props) {
-    // let sidebarContent = <LoginSideBar></LoginSideBar>;
     const [sidenavInstance, setSidenavInstance] = useState();
     const [token, setToken] = useAtom(TOKEN);
     const [USERNAME, setUSERNAME] = useAtom(NAME);
     const [userRole, setUserRole] = useAtom(USER_ROLE);
     const [user, setUser] = useAtom(USER);
+    // const [sidebarContent, setSidebarContent] = useAtom(SIDEBAR_CONTENT);
+
+
 
     const navigate = useNavigate();
-
-    function farmsPageClickHandler() {
-        props.setCurrentPage(<AllFarmsPage/>)
-    }
-
-    function productsPageClickHandler() {
-        props.setCurrentPage(<AllProductsPage/>)
-    }
 
     function openLoginPanel() {
         console.log("opening");
@@ -40,6 +34,7 @@ function Navbar(props) {
     function openRegisterPanel() {
         console.log("opening");
         props.setSidebarContent(<RegisterPanel/>)
+        console.log("sidebar ", props.sidebarContent);
         sidenavInstance.open();
     }
 
@@ -56,7 +51,10 @@ function Navbar(props) {
         const sidenavOverlay = document.querySelector(".sidenav-overlay");
         sidenavOverlay.style.marginLeft = "17.5%";
 
-    }, [])
+        if (Object.keys(user).length !== 0) {
+            props.setSidebarContent(<UserPanel/>);
+        }
+    }, [user])
 
     return (
         <div className={classes.navbar}>

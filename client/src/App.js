@@ -21,7 +21,7 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar setCurrentPage={setCurrentPage} sidebarContent={sidebarContent} setSidebarContent={setSidebarContent}/>
+            <Navbar setCurrentPage={setCurrentPage} sidebarContent={sidebarContent} setSidebarContent={setSidebarContent} />
             <Routes>
                 <Route path="/" element={<HomePage currentPage={currentPage}/>} exact/>
                 <Route path="/farm/:id" element={<FarmPage currentPage={currentPage}/>} exact/>

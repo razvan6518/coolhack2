@@ -126,7 +126,27 @@ function AllFarmsPage() {
     }
 
     function handleFarmCreate() {
-        //todo: send farm to server
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "ranchName": farmName,
+            "description": farmDesc
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        console.log("uid ", user.id);
+
+        fetch("http://localhost:5000/api/user/" + user.id, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
     }
 
 
@@ -151,7 +171,7 @@ function AllFarmsPage() {
 
                         </div>
 
-                        <div className="modal-footer" >
+                        <div className={"modal-footer" + classes.addButton} >
                             <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={handleFarmCreate}>Proceed</a>
                         </div>
                     </div>
