@@ -159,7 +159,12 @@ function AllFarmsPage() {
             <FarmList farms={loadedFarms}/>
             { Object.keys(user).length !== 0 && user.roles[0] === "PRODUCER" &&
                 <section className={classes.section}>
-                    <a className={"btn-floating btn-large waves-effect waves-light red modal-trigger"} href="#modal1" onClick={handleModal}><i className={"material-icons"}>add</i></a>
+                    <div className="fixed-action-btn">
+                        <a className="btn-floating btn-large red">
+                            <i className="large material-icons waves-effect waves-light red modal-trigger" href="#modal1" onClick={handleModal}>mode_edit</i>
+                        </a>
+                    </div>
+                    {/*<a className={"btn-floating btn-large waves-effect waves-light red modal-trigger"} href="#modal1" onClick={handleModal}><i className={"material-icons"}>add</i></a>*/}
                     <div id="modal1" className="modal">
 
                         <div className={classes.modalForm}>
