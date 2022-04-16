@@ -17,10 +17,12 @@ import java.util.Set;
 public class RanchController {
 
     RanchServiceImpl ranchService;
+    ProductServiceImpl productService;
 
     @Autowired
-    public RanchController(RanchServiceImpl ranchService) {
+    public RanchController(RanchServiceImpl ranchService, ProductServiceImpl productService) {
         this.ranchService = ranchService;
+        this.productService = productService;
     }
 
     @PostMapping
@@ -28,8 +30,9 @@ public class RanchController {
         ranchService.saveRanch(ranch);
     }
 
-    @PostMapping("/{id}/{productId}")
-    public ResponseEntity<?> addProductToRanch(@PathVariable Long productId, @PathVariable Long id) {
+    @PostMapping("/{id}")
+    public ResponseEntity<?> addProductToRanch(@RequestBody Product product, @PathVariable Long id) {
+        long productId = productService.addProduct(product);
         ranchService.addProduct(id, productId);
         return ResponseEntity.ok().build();
     }

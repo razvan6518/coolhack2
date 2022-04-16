@@ -10,11 +10,11 @@ function ProductItem(props) {
     props.product.coverPhoto = photoURL;
     const navigate = useNavigate();
     return (
-        <div className={classes.cardWidth + " " + "card large"}>
+        <div className={classes.card + " " + "card small"}>
             <div  className={classes.image + " " + "card-image waves-effect waves-block waves-light"}>
                 <img className="activator" src={props.product.coverPhoto} alt={props.product.productName}/>
             </div>
-            <div className="card-content" onClick={() => navigate(`/farm/${props.product.id}`)}>
+            <div className="card-content">
                 <span className="card-title activator grey-text text-darken-4">{props.product.productName}</span>
             </div>
             <div className="card-reveal">
@@ -23,19 +23,19 @@ function ProductItem(props) {
                 <p>{props.product.description}</p>
             </div>
             <div >
-                {props.approve != null &&
-                    <ApproveFarmButton eventId={props.product.id}
-                                       removeEventFromLoadedEvents={() => {}}
-                    />
-                }
-                {props.unapprove != null &&
-                    <RefuseButton eventId={props.product.id}
-                                  removeEventFromLoadedEvents={() => {}}
-                    />
-                }
-                {props.toFavorites != null &&
-                    <ToFavoriteButton eventId={props.product.id}/>
-                }
+                {/*{props.approve != null &&*/}
+                {/*    <ApproveFarmButton eventId={props.product.id}*/}
+                {/*                       removeEventFromLoadedEvents={() => {}}*/}
+                {/*    />*/}
+                {/*}*/}
+                {/*{props.unapprove != null &&*/}
+                {/*    <RefuseButton eventId={props.product.id}*/}
+                {/*                  removeEventFromLoadedEvents={() => {}}*/}
+                {/*    />*/}
+                {/*}*/}
+                {/*{props.toFavorites != null &&*/}
+                {/*    <ToFavoriteButton eventId={props.product.id}/>*/}
+                {/*}*/}
             </div>
         </div>
     );

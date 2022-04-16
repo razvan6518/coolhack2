@@ -1,6 +1,8 @@
+import classes from "./Footer.module.css"
+
 function Footer() {
     return (
-        <footer className="page-footer">
+        <footer className={classes.footer + " page-footer"}>
             <div className="container">
                 <div className="row">
                     <div className="col l6 s12">

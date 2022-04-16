@@ -76,7 +76,7 @@ function RegisterPanel() {
 
     return (
         <div className={classes.content}>
-            <span>Register</span>
+            <h5 className="cyan-text">Register</h5>
             <div className="row">
                 <div className="input-field row s6">
                     <input id="email" type="email" className="validate" onChange={(event) => {
@@ -108,20 +108,20 @@ function RegisterPanel() {
                     }}/>
                     <label className="active" htmlFor="repeatPassword">Repeat password</label>
                 </div>
-                <p className={classes.left}>Account type: </p>
+                <p className={classes.left + " cyan-text"}>Account type: </p>
                 <form className={classes.left} onChange={(e) => {
                     setAccountType(e.target.value)
                 }}>
                     <p>
                         <label>
                             <input name="group1" type="radio" value="CLIENT"/>
-                            <span>Client</span>
+                            <span className="black-text">Client</span>
                         </label>
                     </p>
                     <p>
                         <label>
                             <input name="group1" type="radio" value="PRODUCER"/>
-                            <span>Producer</span>
+                            <span className="black-text">Producer</span>
                         </label>
                     </p>
                 </form>

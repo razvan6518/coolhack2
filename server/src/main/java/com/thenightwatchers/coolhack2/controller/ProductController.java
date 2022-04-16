@@ -22,6 +22,7 @@ public class ProductController {
 
     @PostMapping
     public void addProduct(@RequestBody Product product) {
+
         productService.saveProduct(product);
     }
 

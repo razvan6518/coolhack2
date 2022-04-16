@@ -16,12 +16,19 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepo productRepo;
 
+
     @Override
     public Product saveProduct(Product product) {
         return productRepo.save(product);
     }
 
+    public long addProduct(Product product) {
+        product = productRepo.save(product);
+        return product.getId();
+    }
+
     public List<Product> getAllProducts() {
         return productRepo.findAll();
     }
+
 }

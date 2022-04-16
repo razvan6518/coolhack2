@@ -1,4 +1,4 @@
-.navbar {
+.navbarDiv {
     position: fixed;
     top: 0;
     left: 0;
@@ -7,8 +7,30 @@
     height: 56px;
     transition: top 0.3s;
     z-index:99;
+    box-shadow: 0 4px 1px -3px darkslategrey;
 }
+
+.navbar {
+    background-image: linear-gradient(to right, #16A085, #F4D03F);
+}
+
+.welcome {
+    margin-right: 10px;
+}
+
 
 .sidenav {
     width: 18%;
+    /* From https://css.glass */
+    /* From https://css.glass */
+    background: rgba(61, 60, 60, 0.44);
+    /*border-radius: 16px;*/
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15.8px);
+    -webkit-backdrop-filter: blur(15.8px);
+    border: 1px solid rgba(255, 255, 255, 0.54);
+}
+
+.btn {
+    background: #16A085;
 }

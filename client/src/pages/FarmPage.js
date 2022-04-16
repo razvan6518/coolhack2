@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import ProductList from "../components/products/ProductList";
 import {useEffect, useState} from "react";
 import {useAtom} from "jotai";
-import {USER} from "../store";
+import {TOKEN, USER} from "../store";
 import classes from "./AllFarmsPage.module.css";
 import M from "materialize-css";
 import options from "materialize-css";
@@ -12,6 +12,7 @@ function FarmPage() {
     const {id} = useParams();
     const [products, setProducts] = useState([]);
     const [user] = useAtom(USER);
+    const [token] = useAtom(TOKEN);
 
     const [prodName, setProdName] = useState("");
     const [prodPrice, setProdPrice] = useState("");
@@ -44,7 +45,26 @@ function FarmPage() {
     }
 
     function handleProdCreate() {
-        //todo: send farm to server
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + token);
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "productName": prodName
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:5000/api/ranch/" + id, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
     }
 
     return (

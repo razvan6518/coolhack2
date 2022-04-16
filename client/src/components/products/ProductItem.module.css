@@ -12,4 +12,8 @@
     object-fit: cover;
 }
 
+.card {
+    width: auto;
+}
+
 

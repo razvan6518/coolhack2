@@ -4,7 +4,10 @@ import classes from "./AllFarmsPage.module.css";
 import {useAtom} from "jotai";
 import {USER, USER_ROLE} from "../store";
 import M from "materialize-css";
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
 import options from "materialize-css";
+import Header from "../components/layout/Header";
 
 let imageURL = "https://foodtank.com/wp-content/uploads/2020/04/COVID-19-Relief_Small-Farms-.jpg"
 
@@ -151,11 +154,12 @@ function AllFarmsPage() {
 
 
     return (
-        <section className={classes.section}>
+        <>
+            <Header/>
             <FarmList farms={loadedFarms}/>
             { Object.keys(user).length !== 0 && user.roles[0] === "PRODUCER" &&
-                <>
-                    <a className={classes.addButton + " " + "btn-floating btn-large waves-effect waves-light red modal-trigger"} href="#modal1" onClick={handleModal}><i className="material-icons">add</i></a>
+                <section className={classes.section}>
+                    <a className={"btn-floating btn-large waves-effect waves-light red modal-trigger"} href="#modal1" onClick={handleModal}><i className={"material-icons"}>add</i></a>
                     <div id="modal1" className="modal">
 
                         <div className={classes.modalForm}>
@@ -171,13 +175,13 @@ function AllFarmsPage() {
 
                         </div>
 
-                        <div className={"modal-footer" + classes.addButton} >
+                        <div className={"modal-footer"} >
                             <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={handleFarmCreate}>Proceed</a>
                         </div>
                     </div>
-                </>
+                </section>
             }
-        </section>
+        </>
     );
 }
 

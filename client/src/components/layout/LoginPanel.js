@@ -57,11 +57,11 @@ function LoginPanel() {
 
     return (
         <div className={classes.content}>
-            <span>Login</span>
+            <h5 className="cyan-text">Login</h5>
             <div className="row">
                 <div className="input-field row s6">
                     <input id="email" type="email" className="validate" onChange={e => {setEmail(e.target.value)}}/>
-                    <label className="active" htmlFor="email">Email</label>
+                    <label className="activ" htmlFor="email">Email</label>
                 </div>
                 <div className="input-field row s6">
                     <input id="password" type="password" className="validate" onChange={e => {setPassword(e.target.value)}}/>

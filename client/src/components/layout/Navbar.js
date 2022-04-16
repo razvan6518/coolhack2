@@ -42,6 +42,7 @@ function Navbar(props) {
         setUSERNAME("");
         setUser({});
         setUserRole("");
+        props.setSidebarContent(<LoginPanel/>);
     }
 
     useEffect(() => {
@@ -56,27 +57,42 @@ function Navbar(props) {
         }
     }, [user])
 
+    function highlightClicked(event) {
+        const buttons = document.querySelectorAll("a");
+        for (let button of buttons) {
+            console.log("okkkk");
+            button.classList.remove("yellow", "darken-2")
+        }
+        event.target.classList.add("yellow", "darken-2");
+    }
+
     return (
-        <div className={classes.navbar}>
-            <nav>
+        <div className={classes.navbarDiv}>
+            <nav className={classes.navbar}>
                 <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i
                     className="material-icons">menu</i></a>
                 <div className="nav-wrapper">
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
                         <li><a>Logo</a></li>
-                        <li><a onClick={() => navigate(`/all-farms`)}>Farms</a></li>
-                        <li><a onClick={() => navigate(`/products`)}>Products</a></li>
+                        <li><a className="yellow darken-2" onClick={(e) => {
+                            navigate(`/all-farms`);
+                            highlightClicked(e);
+                        }}>Farms</a></li>
+                        <li><a onClick={(e) => {
+                            navigate(`/products`);
+                            highlightClicked(e);
+                        }}>Products</a></li>
                     </ul>
                     {USERNAME === '' &&
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li><a onClick={openLoginPanel}>Login</a></li>
-                            <li><a onClick={openRegisterPanel}>Register</a></li>
+                            <li><a className={classes.btn} onClick={openLoginPanel}>Login</a></li>
+                            <li><a className={classes.btn} onClick={openRegisterPanel}>Register</a></li>
                         </ul>
                     }
                     {USERNAME !== '' &&
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li>Welcome {USERNAME}</li>
-                            <li><a onClick={logOut}>Log out</a></li>
+                            <li className={classes.welcome}>Welcome {USERNAME}</li>
+                            <li><a className={classes.btn} onClick={logOut}>Log out</a></li>
                         </ul>
                     }
                 </div>
@@ -85,8 +101,6 @@ function Navbar(props) {
                 {props.sidebarContent}
             </ul>
         </div>
-
-
     )
 }
 
