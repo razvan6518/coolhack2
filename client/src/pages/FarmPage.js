@@ -4,6 +4,8 @@ function FarmPage(props) {
 
     const { id } = useParams();
 
+    
+
     return (
         <p>farm page {id}</p>
     );

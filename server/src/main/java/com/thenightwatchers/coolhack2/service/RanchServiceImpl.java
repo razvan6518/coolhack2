@@ -36,4 +36,8 @@ public class RanchServiceImpl implements RanchService {
     public List<Ranch> getAll(){
         return ranchRepo.findAll();
     }
+
+    public Ranch getRanchById(Long id){
+        return ranchRepo.getRanchById(id);
+    }
 }

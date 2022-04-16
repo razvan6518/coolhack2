@@ -38,17 +38,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public AppUser updateUser(AppUser user, long id) {
-        AppUser appUser = userRepo.findById(id).get();
-        // TODO: fix bug when update user details without changing password
-        appUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        appUser.setFirstName(user.getFirstName());
-        appUser.setLastName(user.getLastName());
-        appUser.setEmail(user.getEmail());
-        return userRepo.save(appUser);
-    }
-
-    @Override
     public AppUser getUser(long id) {
         return userRepo.findById(id).get();
     }
@@ -81,6 +70,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        AppUser user = userRepo.findByUsername(username);
+        Collection<SimpleGrantedAuthority> roles = new ArrayList<>();
+        user.getRoles().forEach(role -> roles.add(new SimpleGrantedAuthority(role)));
+        return new User(user.getUsername(), user.getPassword(), roles);
     }
 }

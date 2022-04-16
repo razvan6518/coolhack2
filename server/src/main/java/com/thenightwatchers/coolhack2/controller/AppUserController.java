@@ -44,10 +44,10 @@ public class AppUserController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<AppUser> getUserByEmail(@PathVariable String email) {
+    public AppUser getUserByEmail(@PathVariable String email) {
         if (appUserService.getAllByEmail(email).size() > 0)
-            return ResponseEntity.status(200).build();
+            return appUserService.getAllByEmail(email).get(0);
         else
-            return ResponseEntity.status(500).build();
+            return null;
     }
 }

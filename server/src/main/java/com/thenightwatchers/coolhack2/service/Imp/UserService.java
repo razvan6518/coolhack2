@@ -10,8 +10,6 @@ import java.util.Set;
 public interface UserService {
     AppUser saveUser(AppUser appUser);
 
-    AppUser updateUser(AppUser user, long id);
-
     AppUser getUser(long id);
 
     List<AppUser> getUsers();

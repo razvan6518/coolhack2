@@ -38,4 +38,11 @@ public class RanchController {
     public List<Ranch> getAll(){
         return ranchService.getAll();
     }
+
+    @GetMapping("/products/{id}")
+    public List<Product> getAllProducts(@PathVariable Long id){
+        Ranch ranch = ranchService.getRanchById(id);
+        return (List<Product>) ranch.getProducts();
+    }
+
 }
