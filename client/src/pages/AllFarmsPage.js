@@ -28,7 +28,9 @@ function AllFarmsPage() {
         fetch("http://localhost:5000/api/ranch/all", requestOptions)
             .then(response => response.text())
             .then(result => {
-                setLoadedFarms(JSON.parse(result));
+                let farm = JSON.parse(result);
+                farm.coverPhoto = imageURL;
+                setLoadedFarms(farm);
                 console.log(result)
             })
             .catch(error => console.log('error', error));
