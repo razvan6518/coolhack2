@@ -5,7 +5,7 @@ function FarmList(props) {
     return (
         <div className={classes.list}>
             <ul>
-                {props.events.map(farm => <FarmItem key={farm.id} farm={farm} toFavorites={true}/>)}
+                {props.farms.map(farm => <FarmItem key={farm.id} farm={farm} toFavorites={true}/>)}
             </ul>
         </div>
     );

@@ -28,9 +28,11 @@ function AllFarmsPage() {
         fetch("http://localhost:5000/api/ranch/all", requestOptions)
             .then(response => response.text())
             .then(result => {
-                let farm = JSON.parse(result);
-                farm.coverPhoto = imageURL;
-                setLoadedFarms(farm);
+                let farms = JSON.parse(result);
+                for (let farm of farms) {
+                    farm.coverPhoto = imageURL;
+                }
+                setLoadedFarms(farms);
                 console.log(result)
             })
             .catch(error => console.log('error', error));
@@ -51,7 +53,7 @@ function AllFarmsPage() {
 
     return (
         <section>
-            <FarmList events={loadedFarms}/>
+            <FarmList farms={loadedFarms}/>
         </section>
     );
 }
