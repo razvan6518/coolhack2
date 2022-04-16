@@ -32,7 +32,7 @@ function RegisterPanel() {
         };
 
         let response = fetch("http://localhost:5000/api/user/" + email, requestOptions);
-        let emailExist = (response.status === 200);
+        let emailExist = (response.status != null);
 
         if (!emailExist) {
             event.preventDefault();

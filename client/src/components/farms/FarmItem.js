@@ -11,11 +11,11 @@ function FarmItem(props) {
             <div  className={classes.image + " " + "card-image waves-effect waves-block waves-light"} onClick={() => navigate(`/`)}>
                 <img className="activator" src={props.farm.coverPhoto} alt={props.farm.name}/>
             </div>
-            <div className="card-content" onClick={() => navigate(`/`)}>
-                <span className="card-title activator grey-text text-darken-4">{props.farm.name}</span>
+            <div className="card-content" onClick={() => navigate(`/farm/${props.farm.id}`)}>
+                <span className="card-title activator grey-text text-darken-4">{props.farm.ranchName}</span>
             </div>
             <div className="card-reveal">
-                <span className="card-title grey-text text-darken-4">{props.farm.name}<i
+                <span className="card-title grey-text text-darken-4">{props.farm.ranchName}<i
                     className="material-icons right">close</i></span>
                 <address>{props.farm.address}</address>
                 <p>{props.farm.description}</p>

@@ -1,11 +1,13 @@
 import classes from "./Login.module.css"
 import {useState} from "react";
 import {useAtom} from "jotai";
-import {TOKEN} from "../../store";
+import {NAME, TOKEN, USER_ROLE} from "../../store";
 
 function LoginPanel() {
 
     const [token, setToken] = useAtom(TOKEN);
+    const [userName, setUserName] = useAtom(NAME);
+    const [userRole, setUserRole] = useAtom(USER_ROLE);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -32,6 +34,19 @@ function LoginPanel() {
                 result = JSON.parse(result);
                 if (result.access_token !== undefined) {
                     setToken(result.access_token);
+
+                    const requestOptions = {
+                        method: 'GET',
+                        redirect: 'follow'
+                    };
+
+                    fetch("http://localhost:5000/api/user/email/"+ email, requestOptions)
+                        .then(response => response.text())
+                        .then(result => {
+                            setUserName(JSON.parse(result)['firstName']);
+                            setUserRole(JSON.parse(result)['roles'][0]);
+                        })
+                        .catch(error => console.log('error', error));
                 }
             })
             .catch(error => console.log('error', error));

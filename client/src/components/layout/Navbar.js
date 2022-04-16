@@ -7,12 +7,17 @@ import LoginPanel from "./LoginPanel";
 import UserPanel from "./UserPanel";
 import RegisterPanel from "./RegisterPanel";
 import {useAtom} from "jotai";
-import {TOKEN} from "../../store";
+import {NAME, TOKEN, USER_ROLE} from "../../store";
+import {useNavigate} from "react-router-dom";
 
 function Navbar(props) {
     // let sidebarContent = <LoginSideBar></LoginSideBar>;
     const [sidenavInstance, setSidenavInstance] = useState();
     const [token, setToken] = useAtom(TOKEN);
+    const [USERNAME, setUSERNAME] = useAtom(NAME);
+    const [userRole, setUserRole] = useAtom(USER_ROLE);
+
+    const navigate = useNavigate();
 
     function farmsPageClickHandler() {
         props.setCurrentPage(<AllFarmsPage/>)
@@ -32,6 +37,11 @@ function Navbar(props) {
         sidenavInstance.open();
     }
 
+    function logOut() {
+        setUSERNAME("")
+        setUserRole("")
+    }
+
     useEffect(() => {
         // sidebar
         let sidenav = document.querySelector('#slide-out');
@@ -42,17 +52,26 @@ function Navbar(props) {
     return (
         <div>
             <nav>
-                <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons" >menu</i></a>
+                <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i
+                    className="material-icons">menu</i></a>
                 <div className="nav-wrapper">
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li><a>Logo {token}</a></li>
-                        <li><a onClick={farmsPageClickHandler}>Farms</a></li>
-                        <li><a onClick={productsPageClickHandler}>Products</a></li>
+                        <li><a>Logo</a></li>
+                        <li><a onClick={() => navigate(`/all-farms`)}>Farms</a></li>
+                        <li><a onClick={() => navigate(`/products`)}>Products</a></li>
                     </ul>
-                    <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        <li><a onClick={openLoginPanel}>Login</a></li>
-                        <li><a onClick={openRegisterPanel}>Register</a></li>
-                    </ul>
+                    {USERNAME === '' &&
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            <li><a onClick={openLoginPanel}>Login</a></li>
+                            <li><a onClick={openRegisterPanel}>Register</a></li>
+                        </ul>
+                    }
+                    {USERNAME !== '' &&
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            <li>Welcome {USERNAME}</li>
+                            <li><a onClick={logOut}>Log out</a></li>
+                        </ul>
+                    }
                 </div>
             </nav>
             <ul id="slide-out" className="sidenav">

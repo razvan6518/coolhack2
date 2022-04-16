@@ -15,40 +15,24 @@ function AllFarmsPage() {
     useEffect(() => {
         setIsLoading(true);
 
-
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
 
         sessionStorage.getItem("token");
 
-        const requestOptions = {
+        let requestOptions = {
             method: 'GET',
-            headers: myHeaders,
             redirect: 'follow'
         };
-        // todo: add api url
-        // fetch(
-        //     "http://localhost:5000/events/approved", requestOptions
-        // ).then(response => {
-        //     return response.json();
-        // }).then(data => {
-        //     const events = [];
-        //     for (const key in data) {
-        //         const event = {
-        //             id: key,
-        //             ...data[key]
-        //         };
-        //         events.push(event);
-        //     }
-        //
-        //     setIsLoading(false);
-        //     console.log("is loading " + isLoading);
-        //     console.log("loaded farms");
-        //     setLoadedFarms(events);
-        // });
 
-        // sample local data
-        setLoadedFarms(FARMS);
+        fetch("http://localhost:5000/api/ranch/all", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                setLoadedFarms(JSON.parse(result));
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
+
         setIsLoading(false)
 
     }, []);

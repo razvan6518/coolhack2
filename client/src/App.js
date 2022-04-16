@@ -10,6 +10,8 @@ import {useEffect, useState} from "react";
 import './index.css';
 import UserPanel from "./components/layout/UserPanel";
 import LoginPanel from "./components/layout/LoginPanel";
+import FarmPage from "./pages/FarmPage";
+import AllProductsPage from "./pages/AllProductsPage";
 
 function App() {
     const [currentPage, setCurrentPage] = useState(<AllFarmsPage/>);
@@ -22,6 +24,9 @@ function App() {
             <Navbar setCurrentPage={setCurrentPage} sidebarContent={sidebarContent} setSidebarContent={setSidebarContent}/>
             <Routes>
                 <Route path="/" element={<HomePage currentPage={currentPage}/>} exact/>
+                <Route path="/farm/:id" element={<FarmPage currentPage={currentPage}/>} exact/>
+                <Route path="/all-farms" element={<AllFarmsPage currentPage={currentPage}/>} exact/>
+                <Route path="/products" element={<AllProductsPage currentPage={currentPage}/>} exact/>
             </Routes>
             <Footer/>
         </div>
