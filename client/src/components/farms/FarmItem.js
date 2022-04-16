@@ -11,7 +11,7 @@ function FarmItem(props) {
             <div  className={classes.image + " " + "card-image waves-effect waves-block waves-light"} onClick={() => navigate(`/`)}>
                 <img className="activator" src={props.farm.coverPhoto} alt={props.farm.name}/>
             </div>
-            <div className="card-content" onClick={() => navigate(`/farm/${props.farm.id}/${props.farm.name}/${props.farm.coverPhoto}/${props.farm.description}`)}>
+            <div className="card-content" onClick={() => navigate(`/farm/${props.farm.id}`)}>
                 <span className="card-title activator grey-text text-darken-4">{props.farm.ranchName}</span>
             </div>
             <div className="card-reveal">

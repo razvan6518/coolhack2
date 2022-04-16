@@ -3,7 +3,7 @@ import FarmItem from "../farms/FarmItem";
 import ProductItem from "./ProductItem";
 
 function ProductList(props) {
-
+    console.log("products ", props.products);
     return (
         <div className={classes.list}>
             <ul>

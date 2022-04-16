@@ -1,24 +1,27 @@
 import {useParams} from "react-router-dom";
-import FarmItem from "../components/farms/FarmItem";
-import {useEffect, useState} from "react";
 import ProductList from "../components/products/ProductList";
+import {useEffect, useState} from "react";
 
 function FarmPage() {
 
-    const { id, name, description, coverPhoto } = useParams();
-    const [products, setProducts] = useState();
+    const {id} = useParams();
+    const [products, setProducts] = useState([]);
+
+    console.log("farm id ", id);
 
     const requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
-
     useEffect(() => {
-        fetch("http://localhost:5000/api/ranch/products/%22+id", requestOptions)
+        fetch("http://localhost:5000/api/ranch/products/" + id, requestOptions)
             .then(response => response.text())
             .then(result => {
+                console.log("result ", result);
                 let prods = JSON.parse(result);
+                console.log("products0 ", prods);
                 setProducts(prods);
+                console.log("farm page products ", products);
             })
             .catch(error => console.log('error', error));
     }, [])

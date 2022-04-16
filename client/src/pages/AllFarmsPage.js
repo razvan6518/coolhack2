@@ -49,8 +49,6 @@ function AllFarmsPage() {
         );
     }
 
-    console.log("background ", loadedFarms);
-
     return (
         <section>
             <FarmList farms={loadedFarms}/>
