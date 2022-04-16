@@ -30,7 +30,7 @@ public class AppUserController {
         appUserService.saveUser(appUser);
     }
 
-    @PostMapping("/{userId}/{ranchId}")
+    @PostMapping("/{userId}")
     public ResponseEntity<?> addRanchToUser(@PathVariable Long userId, @RequestBody Ranch ranch) {
         Long id = ranchService.addRanch(ranch);
         appUserService.addRanch(userId, id);
