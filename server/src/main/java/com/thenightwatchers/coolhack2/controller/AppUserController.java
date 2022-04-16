@@ -2,6 +2,7 @@ package com.thenightwatchers.coolhack2.controller;
 
 import com.thenightwatchers.coolhack2.model.AppUser;
 import com.thenightwatchers.coolhack2.model.Ranch;
+import com.thenightwatchers.coolhack2.service.RanchServiceImpl;
 import com.thenightwatchers.coolhack2.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,12 @@ import java.util.Set;
 public class AppUserController {
 
     UserServiceImpl appUserService;
+    RanchServiceImpl ranchService;
 
     @Autowired
-    public AppUserController(UserServiceImpl appUserService) {
+    public AppUserController(UserServiceImpl appUserService, RanchServiceImpl ranchService) {
         this.appUserService = appUserService;
+        this.ranchService = ranchService;
     }
 
     @PostMapping
@@ -28,8 +31,9 @@ public class AppUserController {
     }
 
     @PostMapping("/{userId}/{ranchId}")
-    public ResponseEntity<?> addRanchToUser(@PathVariable Long userId, @PathVariable Long ranchId) {
-        appUserService.addRanch(userId, ranchId);
+    public ResponseEntity<?> addRanchToUser(@PathVariable Long userId, @RequestBody Ranch ranch) {
+        Long id = ranchService.addRanch(ranch);
+        appUserService.addRanch(userId, id);
         return ResponseEntity.ok().build();
     }
 
