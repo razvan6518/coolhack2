@@ -26,6 +26,12 @@ public class RanchServiceImpl implements RanchService {
         return ranchRepo.save(ranch);
     }
 
+    public Long addRanch(Ranch ranch) {
+        ranch = ranchRepo.save(ranch);
+        ranchRepo.flush();
+        return ranch.getId();
+    }
+
     public void addProduct(Long ranchId, Long productId) {
         Ranch ranch = ranchRepo.getRanchById(ranchId);
         Product product = productRepo.getProductById(productId);
