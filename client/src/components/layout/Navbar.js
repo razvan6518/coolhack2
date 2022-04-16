@@ -7,7 +7,7 @@ import LoginPanel from "./LoginPanel";
 import UserPanel from "./UserPanel";
 import RegisterPanel from "./RegisterPanel";
 import {useAtom} from "jotai";
-import {NAME, TOKEN, USER_ROLE} from "../../store";
+import {NAME, TOKEN, USER, USER_ROLE} from "../../store";
 import {useNavigate} from "react-router-dom";
 
 function Navbar(props) {
@@ -16,6 +16,7 @@ function Navbar(props) {
     const [token, setToken] = useAtom(TOKEN);
     const [USERNAME, setUSERNAME] = useAtom(NAME);
     const [userRole, setUserRole] = useAtom(USER_ROLE);
+    const [user, setUser] = useAtom(USER);
 
     const navigate = useNavigate();
 
@@ -38,8 +39,9 @@ function Navbar(props) {
     }
 
     function logOut() {
-        setUSERNAME("")
-        setUserRole("")
+        setUSERNAME("");
+        setUser({});
+        setUserRole("");
     }
 
     useEffect(() => {
