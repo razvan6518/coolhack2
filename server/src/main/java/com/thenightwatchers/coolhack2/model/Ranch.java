@@ -20,6 +20,8 @@ public class Ranch {
     private Long id;
 
     private String ranchName;
+
+    @Column(length = 100000)
     private String description;
 
     @OneToMany

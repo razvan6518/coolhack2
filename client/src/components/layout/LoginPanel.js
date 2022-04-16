@@ -35,6 +35,8 @@ function LoginPanel() {
                 result = JSON.parse(result);
                 if (result.access_token !== undefined) {
                     setToken(result.access_token);
+                    window.localStorage.setItem("token", result.access_token);
+                    window.localStorage.setItem("user", user);
 
                     const requestOptions = {
                         method: 'GET',

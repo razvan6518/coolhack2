@@ -12,12 +12,20 @@ import UserPanel from "./components/layout/UserPanel";
 import LoginPanel from "./components/layout/LoginPanel";
 import FarmPage from "./pages/FarmPage";
 import AllProductsPage from "./pages/AllProductsPage";
+import {useAtom} from "jotai";
+import {TOKEN, USER} from "./store";
 
 function App() {
     const [currentPage, setCurrentPage] = useState(<AllFarmsPage/>);
     const [sidebarContent, setSidebarContent] = useState(<LoginPanel/>);
+    const [token, setToken] = useAtom(TOKEN);
+    const [user, setUser] = useAtom(USER);
+
 
     console.log("current page is: ", currentPage);
+
+
+
 
     return (
         <div className="App">

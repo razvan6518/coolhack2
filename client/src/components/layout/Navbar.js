@@ -73,7 +73,7 @@ function Navbar(props) {
                     className="material-icons">menu</i></a>
                 <div className="nav-wrapper">
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li><a>Logo</a></li>
+                        <li><a className={classes.logo}>FarmLife</a></li>
                         <li><a className="yellow darken-2" onClick={(e) => {
                             navigate(`/all-farms`);
                             highlightClicked(e);

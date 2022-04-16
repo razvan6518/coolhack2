@@ -6,6 +6,7 @@ import {TOKEN, USER} from "../store";
 import classes from "./AllFarmsPage.module.css";
 import M from "materialize-css";
 import options from "materialize-css";
+import Header from "../components/layout/Header";
 
 function FarmPage() {
 
@@ -68,7 +69,8 @@ function FarmPage() {
     }
 
     return (
-        <section className={classes.section}>
+        <section>
+            <Header/>
             <ProductList products={products}/>
             { Object.keys(user).length !== 0 && user.roles[0] === "PRODUCER" &&
                 <>
