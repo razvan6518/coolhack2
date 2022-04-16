@@ -6,9 +6,9 @@ function ProductList(props) {
     console.log("products ", props.products);
     return (
         <div className={classes.list}>
-            <ul>
+            <div className="row">
                 {props.products.map(product => <ProductItem key={product.id} product={product} toFavorites={true}/>)}
-            </ul>
+            </div>
         </div>
     )
 }

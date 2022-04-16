@@ -15,12 +15,11 @@ function ProductItem(props) {
                 <img className="activator" src={props.product.coverPhoto} alt={props.product.productName}/>
             </div>
             <div className="card-content" onClick={() => navigate(`/farm/${props.product.id}`)}>
-                <span className="card-title activator grey-text text-darken-4">{props.product.name}</span>
+                <span className="card-title activator grey-text text-darken-4">{props.product.productName}</span>
             </div>
             <div className="card-reveal">
-                <span className="card-title grey-text text-darken-4">{props.product.name}<i
+                <span className="card-title grey-text text-darken-4">{props.product.productName}<i
                     className="material-icons right">close</i></span>
-                <address>{props.product.name}</address>
                 <p>{props.product.description}</p>
             </div>
             <div >
