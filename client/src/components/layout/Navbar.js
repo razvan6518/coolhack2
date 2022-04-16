@@ -1,5 +1,6 @@
 import AllFarmsPage from "../../pages/AllFarmsPage";
 import AllProductsPage from "../../pages/AllProductsPage";
+import classes from "./Navbar.module.css";
 import M from "materialize-css";
 import options from "materialize-css";
 import {useEffect, useState} from "react";
@@ -29,11 +30,15 @@ function Navbar(props) {
     }
 
     function openLoginPanel() {
+        console.log("opening");
         props.setSidebarContent(<LoginPanel/>)
         sidenavInstance.open();
+        const sidenavOverlay = document.querySelector(".sidenav-overlay");
+        console.log("overlay ", sidenavOverlay);
     }
 
     function openRegisterPanel() {
+        console.log("opening");
         props.setSidebarContent(<RegisterPanel/>)
         sidenavInstance.open();
     }
@@ -48,11 +53,13 @@ function Navbar(props) {
         // sidebar
         let sidenav = document.querySelector('#slide-out');
         setSidenavInstance(M.Sidenav.init(sidenav, {}));
+        const sidenavOverlay = document.querySelector(".sidenav-overlay");
+        sidenavOverlay.style.marginLeft = "17.5%";
 
     }, [])
 
     return (
-        <div>
+        <div className={classes.navbar}>
             <nav>
                 <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i
                     className="material-icons">menu</i></a>
@@ -76,7 +83,7 @@ function Navbar(props) {
                     }
                 </div>
             </nav>
-            <ul id="slide-out" className="sidenav">
+            <ul id="slide-out" className={classes.sidenav + " " + "sidenav"}>
                 {props.sidebarContent}
             </ul>
         </div>

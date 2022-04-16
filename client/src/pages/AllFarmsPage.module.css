@@ -1,0 +1,14 @@
+.addButton {
+    position: fixed;
+    margin-top: 40%;
+    margin-left: 5%;
+}
+
+.modalForm {
+    padding: 50px;
+    text-align: initial;
+}
+
+.section {
+    margin-top: 3%;
+}

@@ -1,7 +1,10 @@
 import {useEffect, useState} from "react";
 import FarmList from "../components/farms/FarmList";
+import classes from "./AllFarmsPage.module.css";
 import {useAtom} from "jotai";
 import {USER, USER_ROLE} from "../store";
+import M from "materialize-css";
+import options from "materialize-css";
 
 let imageURL = "https://foodtank.com/wp-content/uploads/2020/04/COVID-19-Relief_Small-Farms-.jpg"
 
@@ -48,6 +51,10 @@ function AllFarmsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [loadedFarms, setLoadedFarms] = useState([]);
     const [userLoadedFarms, setUserLoadedFarms] = useState([]);
+
+    const [farmName, setFarmName] = useState("");
+    const [farmAddress, setFarmAddress] = useState("");
+    const [farmDesc, setFarmDesc] = useState("");
 
     useEffect(() => {
         setIsLoading(true);
@@ -111,9 +118,45 @@ function AllFarmsPage() {
         );
     }
 
+    function handleModal(event) {
+
+        const elems = document.querySelectorAll('.modal');
+        const instances = M.Modal.init(elems, options);
+
+    }
+
+    function handleFarmCreate() {
+        //todo: send farm to server
+    }
+
+
     return (
-        <section>
+        <section className={classes.section}>
             <FarmList farms={loadedFarms}/>
+            { Object.keys(user).length !== 0 && user.roles[0] === "PRODUCER" &&
+                <>
+                    <a className={classes.addButton + " " + "btn-floating btn-large waves-effect waves-light red modal-trigger"} href="#modal1" onClick={handleModal}><i className="material-icons">add</i></a>
+                    <div id="modal1" className="modal">
+
+                        <div className={classes.modalForm}>
+                            <h4>Add a ranch</h4><br></br>
+                            <label className="active" htmlFor="farmName">Name</label>
+                            <input id="farmName" type="text" className="validate" onChange={(event) => {setFarmName(event.target.value)}}/>
+
+                            <label className="active" htmlFor="farmAddress">Address</label>
+                            <input id="farmAddress" type="text" className="validate" onChange={(event) => {setFarmAddress(event.target.value)}}/>
+
+                            <label className="active" htmlFor="farmDescription">Description</label>
+                            <input id="farmDescription" type="text" className="validate" onChange={(event) => {setFarmDesc(event.target.value)}}/>
+
+                        </div>
+
+                        <div className="modal-footer" >
+                            <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={handleFarmCreate}>Proceed</a>
+                        </div>
+                    </div>
+                </>
+            }
         </section>
     );
 }
